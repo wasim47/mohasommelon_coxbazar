@@ -1,0 +1,31 @@
+1.Car update and booking system
+2. Company details and updating
+3. Our valuable clients
+4. Experience for supplying vehicles
+5. Our activities
+6. Our partners
+7. Why us
+8. Vision and mission
+9. Board of director 
+10. Photo gallery
+11. Video gallery
+12. Update Information
+13. Notice board
+
+
+
+Modules:
+1. Menu
+2. Content
+3. Vehicle Type
+4. Vehicle
+5. Photo gallery 
+6. Video Gallery
+7. why us
+8. Our Partners
+9. Our Activities
+10. Board of director
+11. Notice Board
+12. Our Clients
+13. Update Information
+14. 
