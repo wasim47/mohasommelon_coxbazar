@@ -1,5 +1,5 @@
-@extends('admin.include.master')
-	@section('title') New Gallery - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') New Gallery - Sommilito Nagorik Forum @endsection 
 @section('content')
 
 	<div class="layout-content">
@@ -16,7 +16,7 @@
                             </li>
                         </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -26,7 +26,7 @@
               <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                      
                       <div class="row" style="margin:10px">
                       	<div class="col-sm-12">
                             <form method="POST" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
@@ -43,8 +43,8 @@
                                 @endif
                             </div>
                         </div>
-
-
+                        
+                        
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
                             <div class="col-md-8">
@@ -56,8 +56,8 @@
                                 @endif
                             </div>
                         </div>
-
-
+                               
+                       
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Sequence') }}</label>
                             <div class="col-md-8">
@@ -78,7 +78,7 @@
                                </select>
                             </div>
                         </div>
-
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -87,11 +87,11 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> 
                     	</div>
                       </div>
                   </div>
-                </div>
+                </div>  
               </div>
 			</div>
         </div>

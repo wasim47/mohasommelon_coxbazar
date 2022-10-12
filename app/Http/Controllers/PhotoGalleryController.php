@@ -42,7 +42,7 @@ class PhotoGalleryController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/banner/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 300);
@@ -95,7 +95,7 @@ class PhotoGalleryController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/banner/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 300);

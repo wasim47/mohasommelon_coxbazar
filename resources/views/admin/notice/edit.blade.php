@@ -1,5 +1,5 @@
 @extends('admin.include.master') 
-	@section('title') Edit - {{ $notice->name }} - HNILAUP @endsection 
+	@section('title') Edit - {{ $notice->name }} - Sommilito Nagorik Forum @endsection 
 @section('content')
 
   <link href="{{ asset('/app-assets/plugins/datatables/datatables.css') }}" rel="stylesheet" type="text/css">
@@ -32,7 +32,16 @@
                       	<div class="col-sm-offset-2">                           
 						{!! Form::model($notice, ['route'=>['notice.update', $notice->id], 'files' => true, 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
                         
-                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Type') }}</label>
+                            <div class="col-md-6">
+                               <select name="type" class="form-control">
+                               	 @foreach($noticetype as $type)
+                               	 	<option value="{{ $type->id }}">{{ $type->name }}</option>
+                                 @endforeach
+                               </select>
+                            </div>
+                        </div>
                         
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Headline') }}</label>
@@ -45,6 +54,20 @@
                                 @endif
                             </div>
                         </div>
+                        
+                         <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Publish Date') }}</label>
+                            <div class="col-md-8">
+                                <input id="publish_date" type="date" class="form-control" name="publish_date" value="{{ $notice->publish_date }}" required>
+                                @if ($errors->has('publish_date'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('publish_date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Details') }}</label>
                             <div class="col-md-8">
@@ -60,11 +83,21 @@
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
                             <div class="col-md-6">
                                 <input id="image" type="file" class="form-control" name="image">
+                                <input type="hidden" class="form-control" name="stillimage" value="{{ $notice->image }}">
+                                <img src="{{ asset('uploads/notice/'.$notice->image) }}" style="width:200px; height:auto" />
                                 @if ($errors->has('image'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        
+                        
+                         <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('PDF File') }}</label>
+                            <div class="col-md-8">
+                                <input id="files" type="file" class="form-control" name="files">
                             </div>
                         </div>
                        
@@ -82,6 +115,7 @@
                                  <option value="0">Not Display</option>
                                </select>
                                <input id="stillthumb" type="hidden" class="form-control" name="stillthumb" value="{{ $notice->image }}">
+                               <input id="existfile" type="hidden" class="form-control" name="existfile" value="{{ $notice->files }}">
                             </div>
                         </div>
                         

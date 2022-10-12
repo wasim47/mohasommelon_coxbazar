@@ -1,5 +1,5 @@
-@extends('admin.include.master')
-	@section('title') Content - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') Today Submission - Sommilito Nagorik Forum @endsection 
 @section('content')
 
 	<div class="layout-content">
@@ -26,12 +26,12 @@
               <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                    
                       <div class="row">
-
+                            
                             {!! Form::model($contentData, ['route'=>['contents.update', $contentData->id], 'files'=>true, 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
 					            <div class="col-sm-12" style="margin-bottom:10px;">
-
+                              
                               <div class="form-group">
                                 <label class="control-label col-md-1 col-sm-1 col-xs-12" for="menu">Menu</span>
                                 </label>
@@ -45,7 +45,7 @@
                                 </div>
                                 @if($errors->has('menu_id'))
                                 <label class="col-md-3 col-sm-3 col-xs-12" style="color: red; display: inline;">
-                                 {{ $errors->first('menu_id') }}
+                                 {{ $errors->first('menu_id') }}                      
                                 </label>
                                 @endif
                               </div>
@@ -59,11 +59,11 @@
                                     </div>
                                     @if($errors->has('title'))
                                     <label class="col-md-3 col-sm-3 col-xs-12" style="color: red; display: inline;">
-                                     {{ $errors->first('title') }}
+                                     {{ $errors->first('title') }}                      
                                     </label>
                                     @endif
                                   </div>
-                              </div>
+                              </div>                              
                              <div class="col-sm-12" style="margin-bottom:10px;">
                               <div class="form-group">
                                 <label class="control-label col-md-1 col-sm-1 col-xs-12" for="content">Content</span>
@@ -73,7 +73,7 @@
                                 </div>
                               </div>
                         </div>
-                        <!--
+                        <!-- 
                         <div class="form-group row">
                 <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Image (Optional)') }}</label>
                 <div class="col-md-6">
@@ -85,7 +85,7 @@
                     @endif
                 </div>
             </div>
-
+                        
                            <div class="col-sm-12" style="margin-bottom:10px;">
                                   <div class="form-group">
                                     <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">Title Bangla <span class="required">*</span>
@@ -95,11 +95,11 @@
                                     </div>
                                     @if($errors->has('title_bangla'))
                                     <label class="col-md-3 col-sm-3 col-xs-12" style="color: red; display: inline;">
-                                     {{ $errors->first('title_bangla') }}
+                                     {{ $errors->first('title_bangla') }}                      
                                     </label>
                                     @endif
                                   </div>
-                              </div>
+                              </div>                              
                             <div class="col-sm-12" style="margin-bottom:10px;">
                               <div class="form-group">
                                 <label class="control-label col-md-1 col-sm-1 col-xs-12" for="content">Content Bangla</span>
@@ -109,8 +109,8 @@
                                 </div>
                               </div>
                         </div>-->
-
-
+                        
+                        
                           <input id="stillthumb" type="hidden" class="form-control" name="stillthumb" value="{{ $contentData->image }}">
                               <div class="ln_solid"></div>
                               <div class="form-group">
@@ -120,11 +120,11 @@
                                   <a href="{{ route('contents.index') }}" class="btn btn-primary">Cancel</a>
                                 </div>
                               </div>
-
+            
                             {!! Form::close() !!}
                         </div>
                   </div>
-                </div>
+                </div>  
               </div>
 			</div>
           </div>

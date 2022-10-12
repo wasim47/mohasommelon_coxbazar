@@ -14,7 +14,6 @@ use App\Models\Secretary;
 use Redirect;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Validator;
-use Str;
 
 class CommonController extends Controller
 {
@@ -37,7 +36,23 @@ class CommonController extends Controller
     }
 
 
+	public function permissionsHospital(Request $req)
+    {
+		$approve_val = $req->approve_val;
+		$valuearray = explode(',',$approve_val);
+		
+		$status = $req->status;
 
+		 $arrayuval =  array(
+			'status'=>$status
+		);
+		$updval = DB::table('hospitals')->whereIn('id', $valuearray)->update($arrayuval);
+		$updval1 = DB::table('hospital_users')->whereIn('hospital_id', $valuearray)->update($arrayuval);
+
+         return Redirect::back();
+    }
+	
+	
 	public function permissions(Request $req)
     {
 		$approve_val = $req->approve_val;
@@ -53,7 +68,6 @@ class CommonController extends Controller
 
          return Redirect::back();
     }
-	
 	public function adminPermissions(Request $req)
     {
 		$approve_val = $req->approve_val;
@@ -91,11 +105,11 @@ class CommonController extends Controller
 	public function codeGeneration()
     {
 		$token = $this->getToken(5);
-        $codes = 'Zaman Car Rental'.$token;
+        $codes = 'Sommilito Nagorik Forum'.$token;
 		return $codes;
     }
-
-	private function getToken($length){
+	
+	private function getToken($length){    
         $token = "";
         $codeAlphabet = "abcdefghijklmnopqrstuvwxyx";
         $codeAlphabet.= "0123456789";
@@ -106,37 +120,40 @@ class CommonController extends Controller
         }
         return $token;
     }
-
-
-
+	
+	
+	
 	public function updateSlug(Request $req)
     {
-		$getDatas = DB::table('cars')->get();
+		$getDatas = DB::table('news')->get();		
 		foreach($getDatas as $gData){
-			$slug = Str::slug($gData->name);
+			$expval=explode(' ',$gData->name);
+			$impval=implode('-',$expval);
+			$slug   = str_replace([',', "'",'"', '/','|','.','`',':'],'' , $impval);
+			
 			 $menuUpdate = array(
 				'slug'=> $slug,
 				'updated_at'=> date('Y-m-d H:i:s')
 			 );
-
-			DB::table('cars')->where('id',$gData->id)->update($menuUpdate);
+	
+			DB::table('news')->where('id',$gData->id)->update($menuUpdate);		
 		}
-
+		
 
 	}
-
-
-
+	
+	
+	
 	  public function sampleFileDownload(Request $req)
 		{
 			//$getFile = base64_decode($req->filename);
-			$getFile = $req->filename.'.csv';
-			$filePath = public_path("samplefiles/".$getFile);
+			$getFile = $req->filename.'.csv';	
+			$filePath = public_path("samplefiles/".$getFile);		
 			$headers = ['Content-Type: application/csv'];
 			return response()->download($filePath, $getFile, $headers);
 		}
-
-
+	
+	
 	public function import(Request $req)
     {
 		if ($req->hasFile('importfile')) {
@@ -150,20 +167,20 @@ class CommonController extends Controller
 				  'extension'      => 'required|in:csv,xlsx,xls',
 			  ]
 			);
-
+	
 			$file = $req->file('importfile');
-
+			
 			$file->move(public_path('import-directory'), $file->getClientOriginalName());
-
-
+			
+	
 			$files = $file->getClientOriginalName();
-
+			
 			$filename = pathinfo($files, PATHINFO_FILENAME);
 			$extension = pathinfo($files, PATHINFO_EXTENSION);
 			$importfiles = $filename.'.'.$extension;
 			if($extension=='csv' || $extension=='xlsx' || $extension=='xls'){
-
-				$path = public_path('import-directory').'/'.$importfiles;
+			
+				$path = public_path('import-directory').'/'.$importfiles;	
 				if($req->filename =='holdinginfo'){
 					$users = (new FastExcel)->import($path, function ($line) {
 						$checkservice = Fastival::where('name',$line['Service Name'])->first();
@@ -173,7 +190,7 @@ class CommonController extends Controller
 						else{
 							$serviceid = 0;
 						}
-
+						
 						$checkuser = Secretary::where('fullname',$line['Secretary Name'])->first();
 						if($checkuser!=""){
 							$secreteryid = $checkuser->id;
@@ -197,8 +214,8 @@ class CommonController extends Controller
 							'budget_year' => $line['Budget Year'],
 							'remark' => $line['Remart'],
 						]);
-					});
-				}
+					});	
+				}	
 				elseif($req->filename =='holdinginfo'){
 					$users = (new FastExcel)->import($path, function ($line) {
 						$checkservice = Fastival::where('name',$line['Service Name'])->first();
@@ -208,7 +225,7 @@ class CommonController extends Controller
 						else{
 							$serviceid = 0;
 						}
-
+						
 						Shopinformation::create([
 							'usefulllink_id' => $serviceid,
 							'institute_name' => $line['Institute Name'],
@@ -219,11 +236,11 @@ class CommonController extends Controller
 							'budget_year' => $line['Budget Year'],
 							'remark' => $line['Remart'],
 						]);
-
-					});
+						
+					});	
 				}
-
-				return redirect()->back();
+		
+				return redirect()->back();		
 			}
 			else{
 				return redirect()->back()->with('error','Please select excel or csv file only');
@@ -233,12 +250,12 @@ class CommonController extends Controller
 			return redirect()->back()->with('error','Please select excel file');
 		}
     }
-
-
+	
+	
 	public function export(Request $req)
     {
 		$type = $req->filename;
-
+			
 		if($type=='holdinginfo'){
 			function usersGenerator() {
 			foreach (UnionInformation::cursor() as $user) {
@@ -249,7 +266,7 @@ class CommonController extends Controller
 				else{
 					$serviceid = '';
 				}
-
+				
 				$checkuser = Secretary::where('id',$user->secretary_id )->first();
 				if($checkuser!=""){
 					$secreteryid = $checkuser->fullname;
@@ -257,8 +274,8 @@ class CommonController extends Controller
 				else{
 					$secreteryid = '';
 				}
-
-				$arrayval = array(
+			
+				$arrayval = array(					
 					'Secretary Name' => $secreteryid,
 					'Service Name' => $serviceid,
 					'Name' => $user->name,
@@ -273,12 +290,12 @@ class CommonController extends Controller
 					'Yearly tax' => $user->yearly_tax,
 					'Budget Year' => $user->budget_year,
 					'Remart' => $user->remark,
-				);
+				);	
 
 				yield $arrayval;
 			}
-		}
-			return (new FastExcel(usersGenerator()))->download('Holding_Information_'.date('Y-m-d H-m-i').'.csv');
+		}	
+			return (new FastExcel(usersGenerator()))->download('Holding_Information_'.date('Y-m-d H-m-i').'.csv');			
 		}
 		elseif($type=='shopinfo'){
 			function usersGenerator() {
@@ -290,8 +307,8 @@ class CommonController extends Controller
 				else{
 					$serviceid = '';
 				}
-
-				$arrayval = array(
+				
+				$arrayval = array(					
 					'Service Name' => $serviceid,
 					'Institute Name' => $user->institute_name,
 					'Proprietor Name' => $user->propitor_name,
@@ -299,14 +316,14 @@ class CommonController extends Controller
 					'Word No' => $user->wordno,
 					'Budget Year' => $user->budget_year,
 					'Remart' => $user->remark,
-				);
+				);	
 
 				yield $arrayval;
 			}
+		}	
+			return (new FastExcel(usersGenerator()))->download('Shop_Information_'.date('Y-m-d H-m-i').'.csv');			
 		}
-			return (new FastExcel(usersGenerator()))->download('Shop_Information_'.date('Y-m-d H-m-i').'.csv');
-		}
-
+				
     }
 
 }

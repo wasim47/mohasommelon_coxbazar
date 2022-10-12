@@ -1,9 +1,9 @@
-@extends('admin.include.master')
-	@section('title') Edit - {{ $admin->fullname }} - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') Edit - {{ $admin->fullname }} - Sommilito Nagorik Forum @endsection 
 @section('content')
 
   <link href="{{ asset('/app-assets/plugins/datatables/datatables.css') }}" rel="stylesheet" type="text/css">
-
+    
     <div class="layout-content">
         <div class="layout-content-body">
         	<div class="col-sm-12">
@@ -18,7 +18,7 @@
                             </li>
                     </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -128,12 +128,12 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> 
                     	</div>
                       </div>
-
+              	
           </div>
-        </div>
+        </div>  
       </div>
 	</div>
   </div>

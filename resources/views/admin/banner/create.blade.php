@@ -1,5 +1,5 @@
-@extends('admin.include.master')
-	@section('title') New Banner - Zaman Car Rentals @endsection
+@extends('admin.include.master') 
+	@section('title') New Banner - Sommilito Nagorik Forums @endsection 
 @section('content')
 
 	<div class="layout-content">
@@ -16,7 +16,7 @@
                             </li>
                         </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -26,7 +26,7 @@
               <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                      
                       <div class="row" style="margin:10px">
                       	<div class="col-sm-offset-2">
                             <form method="POST" action="{{ route('banner.store') }}" enctype="multipart/form-data">
@@ -55,13 +55,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('URL') }}</label>
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('URL (Optional)') }}</label>
                             <div class="col-md-6">
-                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required>
+                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}">
+                            </div>
+                        </div>                        
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Meta Details') }}</label>
+                            <div class="col-md-6">
+                                <input id="meta_details" type="text" class="form-control" name="meta_details" value="{{ old('meta_details') }}">
+                                @if ($errors->has('meta_details'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('meta_details') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-
-
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Keywords') }}</label>
+                            <div class="col-md-6">
+                                <input id="keywords" type="text" class="form-control" name="keywords" value="{{ old('keywords') }}">
+                                @if ($errors->has('keywords'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('keywords') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Sequence') }}</label>
                             <div class="col-md-6">
@@ -82,7 +103,7 @@
                                </select>
                             </div>
                         </div>
-
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -91,11 +112,11 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> 
                     	</div>
                       </div>
                   </div>
-                </div>
+                </div>  
               </div>
 			</div>
         </div>

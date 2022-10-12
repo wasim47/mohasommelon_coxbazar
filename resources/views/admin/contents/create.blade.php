@@ -1,10 +1,10 @@
-@extends('admin.include.master')
-	@section('title') New Article - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') New Article - Sommilito Nagorik Forum @endsection 
 @section('content')
 
     <div class="layout-content">
             <div class="layout-content-body">
-                <div class="col-sm-12">
+                <div class="col-sm-12">                
                     <div class="page-header" style="border:none; margin:0; padding:0">
                     <h3 class="page-title">Create New Article</h3>
                         <ol class="breadcrumb">
@@ -25,13 +25,13 @@
   			    <div class="row-fluid">
     <div class="col-sm-12">
       <div class="card">
-
+        
           <div class="row" style="margin:10px">
                 <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal" enctype="multipart/form-data">
                   {{ csrf_field() }}
-
+                  
                   <div class="col-sm-12" style="margin-bottom:10px;">
-
+                  
                   <div class="form-group">
                     <label class="control-label col-md-1 col-sm-1 col-xs-12" for="menu">Menu</span>
                     </label>
@@ -45,7 +45,7 @@
                     </div>
                     @if($errors->has('menu_id'))
                     <label class="col-md-3 col-sm-3 col-xs-12" style="color: red; display: inline;">
-                     {{ $errors->first('menu_id') }}
+                     {{ $errors->first('menu_id') }}                      
                     </label>
                     @endif
                   </div>
@@ -59,12 +59,12 @@
                     </div>
                     @if($errors->has('title'))
                     <label class="col-md-3 col-sm-3 col-xs-12" style="color: red; display: inline;">
-                     {{ $errors->first('title') }}
+                     {{ $errors->first('title') }}                      
                     </label>
                     @endif
                   </div>
                   </div>
-
+                  
 				 <div class="col-sm-12" style="margin-bottom:10px;">
                   <div class="form-group">
                     <label class="control-label col-md-1 col-sm-1 col-xs-12" for="content">Content</span>
@@ -86,7 +86,7 @@
                     @endif
                 </div>
             </div>
-
+            
             	  <div class="col-sm-12" style="margin-bottom:10px;">
                       <div class="form-group">
                         <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">Title Bangla <span class="required">*</span>
@@ -95,7 +95,7 @@
                           <input type="text" name="title_bangla" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                  </div>
+                  </div>                              
                   <div class="col-sm-12" style="margin-bottom:10px;">
                       <div class="form-group">
                         <label class="control-label col-md-1 col-sm-1 col-xs-12" for="content">Content Bangla</span>
@@ -105,7 +105,7 @@
                         </div>
                       </div>
                 </div>-->
-
+              
                   <div class="ln_solid"></div>
                   <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -115,10 +115,10 @@
                     </div>
                   </div>
 
-                </form>
+                </form> 
           </div>
       </div>
-    </div>
+    </div>  
   </div>
 			</div>
        </div>

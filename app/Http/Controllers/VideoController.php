@@ -9,13 +9,13 @@ use DB;
 use Image;
 
 class VideoController extends Controller
-{
+{	
 	public function __construct()
     {
     	$this->middleware('auth:administration');
     }
-
-
+	
+	 	
    public function index()
     {
         $video = VideoGallery::orderBy('id','DESC')->paginate(50);
@@ -32,13 +32,13 @@ class VideoController extends Controller
     {
         $this->validate($request, [
             'video_title'=>'Required'
-        ]);
-
+        ]);		
+			 
 		 if ($request->hasFile('cover')) {
 			if($request->file('cover')->isValid()) {
 				try {
 					$file = $request->file('cover');
-					$savedFileName = 'video_'.time() . '.' . $file->getClientOriginalExtension();
+					$savedFileName = 'video_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/video/'.$savedFileName;
 					$this->imageResize($file,$pathLarge,$savedFileName, 700, 350);
@@ -50,10 +50,10 @@ class VideoController extends Controller
 		else{
 			$savedFileName = '';
 		 }
-
-
-        $content = new VideoGallery;
-        $content->video_title = $request->video_title;
+		 
+			 
+        $content = new VideoGallery;        
+        $content->video_title = $request->video_title;		
 		$content->video_ref = $request->videos;
 		$content->cover = $savedFileName;
         $content->created_at = date('Y-m-d H:i:s');
@@ -103,7 +103,7 @@ class VideoController extends Controller
 			if($request->file('cover')->isValid()) {
 				try {
 					$file = $request->file('cover');
-					$savedFileName = 'video_'.time() . '.' . $file->getClientOriginalExtension();
+					$savedFileName = 'video_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/video/'.$savedFileName;
 					$this->imageResize($file,$pathLarge,$savedFileName, 700, 350);
@@ -128,15 +128,15 @@ class VideoController extends Controller
 
         return redirect('administration/video');
     }
-
-
+	
+	
     public function destroy($id)
     {
         $content = VideoGallery::find($id);
         $content->delete();
         return redirect('/administration/video');
     }
-
+	
 	public function imageResize($file, $path, $filename, $width, $height)
 	{
 		//$img = Image::make($file)->resize($width, $height)->save($path, $filename, 100);

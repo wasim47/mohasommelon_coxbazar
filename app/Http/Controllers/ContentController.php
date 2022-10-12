@@ -13,7 +13,7 @@ class ContentController extends Controller
 {
    public function index()
     {
-        $contents = Content::with('getMenu')->get();
+        $contents = Content::paginate(50);
         return view('admin.contents.index',compact('contents'));
     }
 
@@ -36,12 +36,12 @@ class ContentController extends Controller
             'title'=>'Required',
             'menu_id'=>'Required',
         ]);
-
+		
 		if ($request->hasFile('image')) {
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/article/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 700, 350);
@@ -53,10 +53,10 @@ class ContentController extends Controller
         else{
             $savedFileName = '';
          }
-
+		 
 
         $content = new Content;
-
+        
         $content->title = $request->title;
         $content->content = $request->content;
 		$content->title_bangla = $request->title_bangla;
@@ -103,18 +103,27 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+	 
+	 
+	 public function setHome($id)
+    {	
+		Content::query()->update(['sethome'=>0]);	
+		Content::where('id',$id)->update(['sethome'=>1]);	
+        return redirect('administration/contents');
+    }
+	
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title'=>'Required',
             'menu_id'=>'Required',
         ]);
-
+		
 		if ($request->hasFile('image')) {
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/article/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 700, 350);
@@ -126,10 +135,10 @@ class ContentController extends Controller
         else{
             $savedFileName = $request->stillthumb;
          }
-
+		 
 
         $content = Content::find($id);
-
+		
         $contentUpdate = array(
             'title'=>$request->title,
 			'image'=>  $savedFileName,
@@ -156,7 +165,7 @@ class ContentController extends Controller
         $content->delete();
         return redirect('administration/contents');
     }
-
+	
 	public function imageResize($file, $path, $filename, $width, $height)
 	{
 		//$img = Image::make($file)->resize($width, $height)->save($path, $filename, 100);

@@ -1,5 +1,5 @@
 @extends('admin.include.master')
-	@section('title') Gallery List - Zaman Car Rental @endsection
+	@section('title') Gallery List - Sommilito Nagorik Forum @endsection
 @section('content')
 	<div class="layout-content">
         <div class="layout-content-body">
@@ -14,8 +14,7 @@
                             </ol>
                         </div>
                         <div class="col-sm-7 breadcrumb pull-right" style="float:right; text-align:right">
-                          <a  href="javascript:void()" onclick="permissions('galleries','1');" style="color:#000; margin-right:20px;" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approved</a>
-                          <a  href="javascript:void()" onclick="permissions('galleries','0');" style="color:#000; margin-right:20px;" class="btn btn-warning btn-sm"><i class="fa fa-times"></i> Disapproved</a>
+                         Total: {{ count($allgallery) }}&nbsp;&nbsp;&nbsp;&nbsp;
                           <a  href="javascript:void()" onclick="deletedata('masterdelete','galleries');" style="color:#fff; margin-right:20px;" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Multiple Delete</a>
                           <a  href="{{ route('gallery.create') }}" style="color:#fff; margin-right:20px" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create New Gallery</a>
                       </div>
@@ -37,7 +36,7 @@
                                     <tr>
                                       <th width="4%"><input name="checkbox" onclick='checkedAll();' type="checkbox" readonly="readonly" /></th>
                                       <th width="13%">Name</th>
-                                      <th width="22%">Image</th>
+                                      <th width="22%">Image</th>                                      
                                       <th width="10%">Sequence</th>
                                       <th width="10%">Status</th>
                                       <th width="12%" align="right">Action</th>
@@ -58,7 +57,7 @@
 
                             <tr id="tablerow<?php echo $gallery->id;?>" class="tablerow">
                               <td><input type="checkbox"  name="summe_code[]" id="summe_code<?php echo $i; ?>" value="{{ $gallery->id }}" /></td>
-                              <td>{{ $gallery->name }}</td>
+                              <td>{{ $gallery->name }}</td>						
                               <td><img src="{{ asset('uploads/photogallery/'.$gallery->image) }}" style="width:100px; height:auto" /></td>
                               <td>{{ $gallery->sequence }}</td>
                               <th width="10%" align="center"><?php echo $statusdis; ?></th>

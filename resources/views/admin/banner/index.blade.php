@@ -1,5 +1,5 @@
 @extends('admin.include.master')
-	@section('title') Banner List - Zaman Car Rental @endsection
+	@section('title') Banner List - Sommilito Nagorik Forum @endsection
 @section('content')
 	<div class="layout-content">
         <div class="layout-content-body">
@@ -38,6 +38,8 @@
                                       <th width="4%"><input name="checkbox" onclick='checkedAll();' type="checkbox" readonly="readonly" /></th>
                                       <th width="13%">Name</th>
                                       <th width="22%">Image</th>
+                                      <th width="15%">Meta Details</th>
+                                      <th width="15%">Keywords</th>
                                       <th width="10%">Sequence</th>
                                       <th width="10%">Status</th>
                                       <th width="12%" align="right">Action</th>
@@ -46,7 +48,7 @@
                                <tbody>
                 			<?php $i=0; ?>
                             @foreach($allbanner as $banner)
-                            <?php $i++;
+                            <?php $i++;								
 
 								if($banner->status!="" && $banner->status==1){
 									$statusdis = '<span style="background:#006600; padding:3px 8px; border-radius:5px; margin:2px;float:left; font-size:16px;text-align:center"><i class="fa fa-check"></i> </span>';
@@ -60,7 +62,8 @@
                               <td><input type="checkbox"  name="summe_code[]" id="summe_code<?php echo $i; ?>" value="{{ $banner->id }}" /></td>
                               <td>{{ $banner->name }}</td>
                               <td><img src="{{ asset('uploads/banner/'.$banner->image) }}" style="width:200px; height:auto" /></td>
-
+                              <td>{{ $banner->meta_details }}</td>
+                              <td>{{ $banner->keywords }}</td>
                               <td>{{ $banner->sequence }}</td>
                               <th width="10%" align="center"><?php echo $statusdis; ?></th>
                               <td align="right">

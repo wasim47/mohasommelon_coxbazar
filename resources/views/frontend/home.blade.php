@@ -12,28 +12,14 @@
       <section class="gauto-slider-area fix">
          <div class="gauto-slide owl-carousel">
             @foreach($banners as $banner)
-            <div class="gauto-main-slide slide-item-1" style="background-image: url({{ asset('uploads/banner/'.$banner->image)}})">
-               <div class="gauto-main-caption">
-                  <div class="gauto-caption-cell">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="slider-text">
-                                 <h2>{{  $banner->name }}</h2>
-                                 <a href="{{  $banner->url }}" class="gauto-btn">Click Now!</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+               <img src="{{ asset('uploads/banner/'.$banner->image)}}" style="width: 100%; height:auto">
             @endforeach
 
 
          </div>
       </section>
-      <section class="gauto-find-area">
+
+ {{--      <section class="gauto-find-area">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
@@ -117,39 +103,11 @@
                </div>
             </div>
          </div>
-      </section>
+      </section> --}}
+
       <section class="gauto-about-area section_50">
          <div class="container">
             <div class="row">
-               {{-- <div class="col-lg-6">
-                  <div class="about-left">
-                     <h4>about us</h4>
-                     <h2>Welcome to gauto</h2>
-                     <p>Horem Ipsum passages, and more recently with desktop publishing software like aldus pageMaker including versions of all the Rorem Ipsum generators</p>
-                     <div class="about-list">
-                        <ul>
-                           <li><i class="fa fa-check"></i>We are a trusted name</li>
-                           <li><i class="fa fa-check"></i>we deal in have all brands</li>
-                           <li><i class="fa fa-check"></i>have a larger stock of vehicles</li>
-                           <li><i class="fa fa-check"></i>we are at worldwide locations</li>
-                        </ul>
-                     </div>
-                     <div class="about-signature">
-                        <div class="signature-left">
-                           <img src="{{ asset('assets/frontend/img/signature.png') }}" alt="signature" />
-                        </div>
-                        <div class="signature-right">
-                           <h3>Robertho Garcia</h3>
-                           <p>President</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-6">
-                  <div class="about-right">
-                     <img src="{{ asset('assets/frontend/img/about.png') }}" alt="car" />
-                  </div>
-               </div> --}}
                {!! $articles->content !!}
             </div>
          </div>
@@ -159,21 +117,22 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="site-heading">
-                     <h4>see our</h4>
-                     <h2>Activities</h2>
+                     <h2>Messages</h2>
                   </div>
                </div>
             </div>
             <div class="row">
                <div class="col-md-12">
                   <div class="service-slider owl-carousel">
-                    @foreach($activities as $service)
+                    @foreach($messages as $service)
                      <div class="single-service">
-                        <span class="service-number">01 </span>
-                            <a href="{{ route('activities.details',$service->slug) }}"><img src="{{ asset('uploads/service/'.$service->image) }}" style="width:100%; height:auto" /></a>
+                            <a href="{{ route('messages.details',$service->id) }}" style="text-align: center; width:100%;">
+                              <img src="{{ asset('uploads/message/'.$service->image) }}" style="width:90%; height:auto; text-align:center" /></a>
 
                         <div class="service-text">
-                           <a href="{{ route('activities.details',$service->slug) }}"><h3>{{ $service->name }}</h3></a>
+                           <a href="{{ route('messages.details',$service->id) }}">
+                              <h3>{{ $service->name }}</h3></a>
+                              <h4>{{ $service->designation }}</h4>
                            <p>{!! Str::limit($service->details,180) !!}</p>
                         </div>
                      </div>
@@ -183,24 +142,50 @@
             </div>
          </div>
       </section>
-      <section class="gauto-promo-area">
+
+
+      <section class="gauto-offers-area section_20">
          <div class="container">
             <div class="row">
-               <div class="col-md-6">
-                  <div class="promo-box-left">
-                     <img src="{{ asset('assets/frontend/img/toyota-offer-2.png') }}" alt="promo car" />
+               <div class="col-md-12">
+                  <div class="site-heading">
+                     <h2>Participants</h2>
                   </div>
                </div>
-               <div class="col-md-6">
-                  <div class="promo-box-right">
-                     <h3>Do You Want To Book with Zaman Car Rental.</h3>
-                     <a href="javascript:void(0)" class="gauto-btn" onclick="scrollToTop()">Book Now</a>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="offer-tabs">
+                     <div class="tab-content" id="offerTabContent">
+                        <div class="row">
+
+                           @foreach ($members as $cars)
+                           <div class="col-lg-2" style="margin: 0; padding:0 ">
+                              <div class="single-offers newscard">
+                                 <div class="offer-image">
+                                    <a href="{{ route('member.details',[$cars->id,'type'=>'rent']) }}">
+                                    <img src="{{ asset('uploads/member/'.$cars->image) }}" alt="offer 1"/>
+                                    </a>
+                                 </div>
+                                 <div class="offer-text">
+                                       <h3>{{ $cars->name }}</h3>
+                                       <h4>{{ $cars->designation }}</h4>
+                                 </div>
+                              </div>
+                           </div>
+                         @endforeach
+                       </div>
+
+                     </div>
                   </div>
                </div>
             </div>
          </div>
       </section>
-      <section class="gauto-offers-area section_20">
+
+
+      
+      {{-- <section class="gauto-offers-area section_20">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
@@ -334,14 +319,14 @@
                </div>
             </div>
          </div>
-      </section>
+      </section> --}}
+      
       <section class="gauto-driver-area section_20">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="site-heading">
-                     <h4>experts</h4>
-                     <h2>Board of Director</h2>
+                     <h2>Organizer</h2>
                   </div>
                </div>
             </div>
@@ -369,7 +354,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="load-more">
-                     <a href="#" class="gauto-btn">More Members</a>
+                     <a href="#" class="gauto-btn">More Organizer</a>
                   </div>
                </div>
             </div>
@@ -383,17 +368,17 @@
         <div class="row">
            <div class="col-md-12">
               <div class="site-heading">
-                 <h2>Our valuable clients</h2>
+                 <h2>Photo Gallery</h2>
               </div>
            </div>
         </div>
 
         <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
 
-		  @foreach($partners as $partner)
+		  @foreach($galleries as $partner)
               <div class="col-lg-3 col-md-4 col-xs-6">
                 <div class="client-logo">
-                  <a href="{{ $partner->url }}" target="_blank"><img src="{{ asset('uploads/partner/'.$partner->image) }}" class="img-fluid" alt="{{ $partner->name }}"></a>
+                  <a  class="photogallery" href='{{ asset('uploads/photogallery/'.$partner->image) }}'><img src="{{ asset('uploads/photogallery/'.$partner->image) }}" class="img-fluid" alt="{{ $partner->name }}"></a>
                 </div>
               </div>
           @endforeach
@@ -414,7 +399,7 @@
         <div class="row">
            <div class="col-md-12">
               <div class="site-heading">
-                 <h2>Our Partners</h2>
+                 <h2>Sponsor</h2>
               </div>
            </div>
         </div>
@@ -425,7 +410,7 @@
                 <ul class="splide__list">
                     @foreach($partners as $partner)
                     <li class="splide__slide">
-                        <a href="{{ $partner->url }}" target="_blank"><img src="{{ asset('uploads/partner/'.$partner->image) }}" class="img-fluid" alt="{{ $partner->name }}"></a>
+                        <a href="{{ $partner->url }}" target="_blank"><img src="{{ asset('uploads/sponsor/'.$partner->image) }}" class="img-fluid" alt="{{ $partner->name }}"></a>
                     </li>
                     @endforeach
                 </ul>

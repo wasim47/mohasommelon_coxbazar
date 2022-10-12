@@ -1,5 +1,5 @@
 @extends('admin.include.master') 
-	@section('title') New Notice - HNILAUPs @endsection 
+	@section('title') New Notice - Sommilito Nagorik Forums @endsection 
 @section('content')
 
 	<div class="layout-content">
@@ -32,7 +32,16 @@
                             <form method="POST" action="{{ route('notice.store') }}" enctype="multipart/form-data">
                         @csrf
 
-						
+						<div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Type') }}</label>
+                            <div class="col-md-6">
+                               <select name="type" class="form-control">
+                               	 @foreach($noticetype as $type)
+                               	 	<option value="{{ $type->id }}">{{ $type->name }}</option>
+                                 @endforeach
+                               </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Headline') }}</label>
                             <div class="col-md-8">
@@ -44,6 +53,19 @@
                                 @endif
                             </div>
                         </div>
+                        
+                         <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Publish Date') }}</label>
+                            <div class="col-md-8">
+                                <input id="publish_date" type="date" class="form-control" name="publish_date" value="{{ old('publish_date') }}" required>
+                                @if ($errors->has('publish_date'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('publish_date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Notice Details') }}</label>
                             <div class="col-md-8">
@@ -64,6 +86,14 @@
                                         <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('PDF File') }}</label>
+                            <div class="col-md-8">
+                                <input id="files" type="file" class="form-control" name="files">
                             </div>
                         </div>
                                            

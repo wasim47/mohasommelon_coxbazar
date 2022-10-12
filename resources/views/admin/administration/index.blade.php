@@ -1,8 +1,8 @@
- @extends('admin.include.master')
-	@section('title') Admin List - Zaman Car Rental @endsection
+ @extends('admin.include.master') 
+	@section('title') Admin List - Sommilito Nagorik Forum @endsection 
 @section('content')
 
-
+ 
 	<div class="layout-content">
         <div class="layout-content-body">
         	<div class="col-sm-12">
@@ -31,7 +31,7 @@
              <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                      
                       <div class="card-block">
                       	<form id="form_check">
                             <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -50,7 +50,7 @@
                                <tbody>
                 			<?php $i=0; ?>
                             @foreach($alladmins as $admin)
-                            <?php $i++;
+                            <?php $i++; 
 								if($admin->status!="" && $admin->status==1){
 									$statusdis = '<span style="background:#006600; padding:3px 8px; border-radius:5px; margin:2px;float:left; font-size:16px;text-align:center"><i class="fa fa-check"></i> </span>';
 								}
@@ -58,7 +58,7 @@
 									$statusdis = '<span style="background:#D91021; padding:3px 8px; border-radius:5px; margin:2px;float:left; font-size:16px;text-align:center"><i class="fa fa-times"></i> </span>';
 								}
 							?>
-
+                            
                             <tr id="tablerow<?php echo $admin->id;?>" class="tablerow">
                               <td><input type="checkbox"  name="summe_code[]" id="summe_code<?php echo $i; ?>" value="{{ $admin->id }}" /></td>
                               <td>{{ $admin->fullname }}</td>
@@ -72,18 +72,18 @@
                              	 <a href="{{ route('admins.edit', $admin->id) }}" class="btn btn-warning" style="font-size: 12px; float:left; padding:3px 5px"><i class="fa fa-edit"></i> Edit</a>
                               </div>
                               <div style="width:50%; float:left">
-                              	  <button type="button" class="btn btn-danger" style="font-size: 12px; float:left; padding:3px 5px"
+                              	  <button type="button" class="btn btn-danger" style="font-size: 12px; float:left; padding:3px 5px" 
                                     onclick="deleteSingle('<?php echo $admin->id;?>','masterdelete','administrations')"><i class="fa fa-trash"></i> Delete</button>
                               </div>
                               </td>
                             </tr>
                             @endforeach
             				</tbody>
-                      </table>
+                      </table> 
                         </form>
                       </div>
                   </div>
-                </div>
+                </div>  
               </div>
     </div>
 </div>

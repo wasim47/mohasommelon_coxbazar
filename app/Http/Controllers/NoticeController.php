@@ -7,6 +7,7 @@ use DB;
 use View;
 use Hash;
 use App\Models\Notice;
+use App\Models\NoticeType;
 use Validator;
 use Image;
 
@@ -27,14 +28,15 @@ class NoticeController extends Controller
 
     public function create()
     {
-        return view('admin.notice.create');
+		$noticetype = NoticeType::orderBy('id', 'DESC')->get();	
+        return view('admin.notice.create',compact('noticetype'));
     }
 
     public function store(Request $request)
     {
 		$validator = Validator::make($request->all(), [
 			 'name' => ['required', 'string', 'max:255'],
-             'image' => ['required']
+             'publish_date' => ['required']
 		]);
 
 
@@ -54,6 +56,23 @@ class NoticeController extends Controller
         else{
             $savedFileName = '';
          }
+		 
+		 
+		 
+		 if ($request->hasFile('files')) {
+            if($request->file('files')->isValid()) {
+                try {
+                    $file = $request->file('files');
+                    $savedPdfFileName = 'notice_pdf_'.time() . '.' . $file->getClientOriginalExtension();  
+					$file->move("uploads/notice/file/", $savedPdfFileName); 
+
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+              }
+            }
+        }
+        else{
+            $savedPdfFileName = '';
+         }
 
 
         $m = new Notice;
@@ -62,9 +81,12 @@ class NoticeController extends Controller
 		$impval=implode('-',$expval);
 		$slug = str_replace([',', "'",'"', '/','|','.','`','%','#','"','?'],'' , strtolower($impval));
 		
+		$m->notice_type_id = $request->type;
 		$m->name = $request->name;
 		$m->slug = $slug;
 		$m->details = $request->details;
+		$m->publish_date = date('Y-m-d',strtotime($request->publish_date));
+		$m->files = $savedPdfFileName;
 		$m->image = $savedFileName;
 		$m->sequence = $request->sequence;
 		$m->status = $request->status;
@@ -85,7 +107,8 @@ class NoticeController extends Controller
     public function edit($id)
     {
         $notice = Notice::find($id);
-        return view('admin.notice.edit',compact('notice'));
+		$noticetype = NoticeType::orderBy('id', 'DESC')->get();	
+        return view('admin.notice.edit',compact('notice','noticetype'));
 
     }
 
@@ -93,7 +116,7 @@ class NoticeController extends Controller
     {
 		$validator = Validator::make($request->all(), [
 			 'name' => ['required', 'string', 'max:255'],
-       		 'image' => ['required']
+       		 'publish_date' => ['required']
 		]);
 
 
@@ -111,7 +134,23 @@ class NoticeController extends Controller
             }
         }
         else{
-            $savedFileName = $request->stillthumb;
+            $savedFileName = $request->stillimage;
+         }
+		 
+		 
+		  if ($request->hasFile('files')) {
+            if($request->file('files')->isValid()) {
+                try {
+                    $file = $request->file('files');
+                    $savedPdfFileName = 'notice_pdf_'.time() . '.' . $file->getClientOriginalExtension();  
+					$file->move("uploads/notice/file/", $savedPdfFileName); 
+
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+              }
+            }
+        }
+        else{
+            $savedPdfFileName = $request->existfile;
          }
 
 
@@ -122,9 +161,12 @@ class NoticeController extends Controller
 		$slug = str_replace([',', "'",'"', '/','|','.','`','%','#','"','?'],'' , strtolower($impval));
 		
         $menuUpdate = array(
+			'notice_type_id'=>  $request->type,
 			'name'=>  $request->name,
 			'slug'=>  $slug,
 			'details'=>  $request->details,
+			'files'=>  $savedPdfFileName,
+			'publish_date'=>  date('Y-m-d',strtotime($request->publish_date)),
 			'image'=>  $savedFileName,
 			'sequence'=>  $request->sequence,
 			'status'=>  $request->status,

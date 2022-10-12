@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-
+  
 use App\Models\Hospital;
 use Maatwebsite\Excel\Concerns\FromCollection;
 

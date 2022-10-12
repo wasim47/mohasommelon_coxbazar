@@ -43,10 +43,10 @@ class BannerController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/banner/'.$savedFileName;
-          			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 500);
+          			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 600);
 
                 } catch (Illuminate\Filesystem\FileNotFoundException $e) {
               }
@@ -63,6 +63,8 @@ class BannerController extends Controller
 		$m->image = $savedFileName;
 		$m->sequence = $request->sequence;
 		$m->status = $request->status;
+		$m->meta_details = $request->meta_details;
+		$m->keywords = $request->keywords;
         $m->created_at = date('Y-m-d H:i:s');
         $m->updated_at = date('Y-m-d H:i:s');
         $m->save();
@@ -94,10 +96,10 @@ class BannerController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'banner_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/banner/'.$savedFileName;
-          			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 500);
+          			$this->imageResize($file,$pathLarge,$savedFileName, 1500, 600);
 
                 } catch (Illuminate\Filesystem\FileNotFoundException $e) {
               }
@@ -115,6 +117,8 @@ class BannerController extends Controller
 			'image'=>  $savedFileName,
 			'sequence'=>  $request->sequence,
 			'status'=>  $request->status,
+			'meta_details'=>  $request->meta_details,
+			'keywords'=>  $request->keywords,
 			'updated_at'=> date('Y-m-d H:i:s')
 		 );
 

@@ -19,27 +19,27 @@ class AdminController extends Controller
 
 
      public function dashboard(Request $request)
-     {
-
-
-
+     {     
+		
+		
+		
     	return view('admin.dashboard');
      }
-
+	 
 	 public function index(Request $request)
-     {
+     {     
 	 	$alladmins = Administration::all();
     	return view('admin.administration.index',compact('alladmins'));
      }
-
-
+	 
+	 
 	  public function livechat(Request $request)
-     {
+     {     
     	return view('admin.administration.livechat');
      }
-
-
-
+	 
+	 
+	 
     public function create()
     {
         return view('admin.administration.create');
@@ -54,35 +54,35 @@ class AdminController extends Controller
             //'password' => ['required', 'string', 'min:6', 'confirmed'],
 			'password' => ['required', 'string', 'min:6'],
         ]);
-
-
+		
+		
 		if ($request->hasFile('userphoto')) {
             if($request->file('userphoto')->isValid()) {
                 try {
                     $file = $request->file('userphoto');
-                    $savedFileName = 'admin_'.time() . '.' . $file->getClientOriginalExtension();
-                    $request->file('userphoto')->move("uploads/admin/", $savedFileName);
-                }
-				catch (Illuminate\Filesystem\FileNotFoundException $e) {
+                    $savedFileName = 'admin_'.time() . '.' . $file->getClientOriginalExtension();        
+                    $request->file('userphoto')->move("uploads/admin/", $savedFileName);					
+                } 
+				catch (Illuminate\Filesystem\FileNotFoundException $e) {        
                 }
             }
         }
         else{
             $savedFileName = '';
-         }
-
-
+         }	
+		 
+		 
 		if($request->userAccess!=""){
 				$userAccess = $request->userAccess;
 				$impaccess=implode(',',$userAccess);
 		}
 		else{
 			$impaccess = '';
-		}
-
+		}	
+		
 
         $m = new Administration;
-
+        
 		$m->photo = $savedFileName;
 		$m->fullname = $request->fullname;
 		$m->username = $request->username;
@@ -108,7 +108,7 @@ class AdminController extends Controller
     {
         $admin = Administration::find($id);
         return view('admin.administration.edit',compact('admin'));
-
+		
     }
 
     public function update(Request $request, $id)
@@ -145,7 +145,7 @@ class AdminController extends Controller
         $menuItem->delete();
         return redirect('administration/admins');
     }
-
-
-
+	
+	
+	
 }

@@ -1,9 +1,10 @@
-@extends('admin.include.master')
-	@section('title') Today Submission - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') Today Submission - Sommilito Nagorik Forum @endsection 
 @section('content')
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <link href="{{ asset('/app-assets/plugins/datatables/datatables.css') }}" rel="stylesheet" type="text/css">
-
+    
     <div class="layout-content">
         <div class="layout-content-body">
         	<div class="col-sm-12">
@@ -18,7 +19,7 @@
                             </li>
                         </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -28,12 +29,12 @@
       <div class="row-fluid">
         <div class="col-sm-12">
           <div class="card">
-
+            
               <div class="row" style="margin:10px">
                    {!! Form::model($menu, ['route'=>['menus.update', $menu->id], 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
                       {{ csrf_field() }}
-
-
+                     
+                              
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="menuname">Menu Name <span class="required">*</span>
                         </label>
@@ -41,7 +42,7 @@
                           <input type="text" name="title" class="form-control col-md-7 col-xs-12" value="{{ $menu->title }}">
                         </div>
                       </div>
-
+                      
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="menuname">Parent Menu <span class="required">*</span>
                         </label>
@@ -54,7 +55,7 @@
                           </select>
                         </div>
                       </div>
-
+                      
                       <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="menuname">Sub Parent Menu <span class="required">*</span>
                                 </label>
@@ -66,67 +67,47 @@
                                   </div>
                                 </div>
                               </div>
-
+                              
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="menuname">Page Structure <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="page_structure" class="form-control">
-                          	<option value="Text">Text</option>
-                            <option value="product">Product</option>
-                            <option value="employee">Our Team</option>
-                            <option value="circular">Circular</option>
-                            <option value="product">Product</option>
-                            <option value="director">Board of Director</option>
-                            <option value="activities">Activities</option>
-                            <option value="videos">Video Gallery</option>
-                            <option value="photos">Photo Gallery</option>
+                          	<option value="Text">কন্টেন্ট</option> 
+                            <option value="notice">সভার কার্য বিবরণী</option> 
+                            <option value="news">সংবাদ বিজ্ঞপ্তি</option> 
+                            <option value="event">সামাজিক কার্যক্রম</option> 
+                            <option value="fastival">উৎসব সমূহ</option> 
+                            <option value="members">সদস্যবৃন্দ/কমিটি</option> 
+                            <option value="messages">বাণী সমূহ</option> 
+                            <option value="videos">ভিডিও গাল্যারী</option> 
+                            <option value="photos">ছবি  গাল্যারী</option> 
+                            <option value="user">নিবন্ধিত সদস্য</option>                             
                           </select>
                         </div>
                       </div>
-
-
+                      
+                      <!--<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="menuname">Menu Name(In bangla) <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="title_bangla" class="form-control col-md-7 col-xs-12" value="{{ $menu->title_bangla }}">
+                        </div>
+                      </div>-->
+                      
+                       
                       <div class="col-sm-12">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button type="submit" class="btn btn-success" style="margin:10px;">Submit</button>
                           <a href="{{ route('menus.index') }}" class="btn btn-primary">Cancel</a>
                         </div>
                       </div>
-
+    
                     </form>
               </div>
           </div>
-        </div>
+        </div>  
       </div>
 	</div>
   </div>
 @endsection
-
-<script>
-function ajaxSearch(id)
-{
-	  var surl = '{{ route("menu.ajaxmenu") }}';
-	  $.ajax({
-		type: "GET",
-		url: surl,
-		data: {'colid':id},
-
-		cache: false,
-		beforeSend: function(){
-			$('#LoadingImageE').show();
-		},
-		complete: function(){
-			$('#LoadingImageE').hide();
-		},
-		success: function(response) {
-			  //console.log(response);
-			  $('#subparentid').html(response);
-			  $("#LoadingImageE").hide();
-		},
-		error: function (xhr, status) {
-		  $("#LoadingImageE").hide();
-		  alert('Unknown error ' + status);
-		}
-	  });
-}
-</script>

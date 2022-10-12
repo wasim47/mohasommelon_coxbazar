@@ -1,6 +1,6 @@
   	@include('admin.include.app')
-    @include('admin.include.header')
-        @yield('content')
+    @include('admin.include.header') 
+        @yield('content') 
     @include('admin.include.footer')
 	 <link href="{{ asset('assets/admin/datatables/datatables.css') }}" rel="stylesheet" type="text/css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -11,7 +11,7 @@
 	<script src="{{ asset('assets/admin/datatables/dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/datatables/dataTables.bootstrap.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.3.0/dist/sweetalert2.all.js"></script>
-    <script src="{{ asset('assets/admin/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('assets/admin/js/common_script.js') }}"></script>
 <script>
 $(document).ready(function() {
@@ -31,13 +31,13 @@ function permissions(tables,status,statuscol){
 	var summeCode=document.getElementsByName("summe_code[]");
 	var j=0;
 	var dataval= new Array();
-
+	
 	for(var i=0; i < summeCode.length; i++){
 		if(summeCode[i].checked)
 		{
 			dataval[j]=summeCode[i].value;
-			j++;
-		}
+			j++;			
+		}		
 	}
 	if(dataval=="")
 	{
@@ -51,10 +51,10 @@ function permissions(tables,status,statuscol){
 			else{
 				var urls = "{{ url('administration/permissions') }}";
 			}
-
+			
 			var hrefdata = urls+"?approve_val="+dataval+"&&tablename="+tables+"&&status="+status+"&&statuscol="+statuscol;
 			window.location.href=hrefdata;
-	}
+	}	
 }
 
 function deletedata(patch,tables)
@@ -68,8 +68,8 @@ function deletedata(patch,tables)
 			if(summeCode[i].checked)
 			{
 				dataval[j]=summeCode[i].value;
-				j++;
-			}
+				j++;				
+			}			
 		}
 		if(dataval=="")
 		{
@@ -80,7 +80,7 @@ function deletedata(patch,tables)
 			});
 			return false;
 		}
-		else{
+		else{	
 
 			swal({
 			  title: 'Are you sure?',
@@ -110,27 +110,27 @@ function deletedata(patch,tables)
 						 var len = html.length;
 						for(i in html){
 							 $("#tablerow" + html[i]).fadeOut('slow');
-						}
-					 }
-				});
-
+						}				
+					 }					
+				});	
+			
 			  } else {
 				console.log('modal was dismissed by ${result.dismiss}')
 			  }
-
+			  
 		});
 	}
 }
 
 function deleteSingle(id,patch,tables){
-
+		
 		var furl = patch;
 		//alert(tables);
 		var imagedel = false;
-
+		
 			swal({
 			  imageUrl: "{{ asset('assets/images/favicons/favicon.png') }}",
-			  title: 'Are you sure?',
+			  title: 'Are you sure?',			 
 			  confirmButtonText: 'Ok, Delete It',
 			  //type: 'warning',
 			  showCloseButton: true,
@@ -154,9 +154,9 @@ function deleteSingle(id,patch,tables){
 						  type: "success",
 						});
 						$("#tablerow" + id).fadeOut('slow');
-					 }
-				});
-
+					 }					
+				});	
+			
 			  } else if (result.value === 0) {
 				//swal({type: 'error', text: "You don't have a bike :("});
 				imagedel = false;
@@ -171,14 +171,14 @@ function deleteSingle(id,patch,tables){
 						  text: "All selected Submission are deleted",
 						  type: "success",
 						});
-						$("#tablerow" + id).fadeOut('slow');
-					 }
-				});
-
+						$("#tablerow" + id).fadeOut('slow');			
+					 }					
+				});	
+			
 			  } else {
 				console.log('modal was dismissed by ${result.dismiss}')
 			  }
-
+			  
 		});
 	}
 

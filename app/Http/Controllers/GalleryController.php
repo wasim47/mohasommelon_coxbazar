@@ -36,7 +36,7 @@ class GalleryController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'gallery_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'gallery_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/photogallery/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 1920, null);
@@ -81,7 +81,7 @@ class GalleryController extends Controller
             if($request->file('image')->isValid()) {
                 try {
                     $file = $request->file('image');
-                    $savedFileName = 'gallery_'.time() . '.' . $file->getClientOriginalExtension();
+                    $savedFileName = 'gallery_'.time() . '.' . $file->getClientOriginalExtension();    
 
 					$pathLarge = 'uploads/photogallery/'.$savedFileName;
           			$this->imageResize($file,$pathLarge,$savedFileName, 1920, null);

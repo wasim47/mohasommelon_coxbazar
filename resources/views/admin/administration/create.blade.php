@@ -1,5 +1,5 @@
-@extends('admin.include.master')
-	@section('title') New Admin - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') New Admin - Sommilito Nagorik Forum @endsection 
 @section('content')
 <style>
 .customtable{
@@ -12,7 +12,7 @@
 	display: table;
     border-collapse: separate;
     border-spacing: 2px;
-    border-color: grey;
+    border-color: grey; 
 }
 .customtable tbody {
     display: table-row-group;
@@ -32,7 +32,7 @@
 	height:auto;
 	float:left;
 	padding:8px;
-	border-radius:0;
+	border-radius:0; 
 	box-shadow:#333 0 0 2px 2px;
 	border:1px solid #000;
 	margin-bottom:5px;
@@ -121,7 +121,7 @@
                             </li>
                         </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -131,16 +131,16 @@
               <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                      
                       <div class="row" style="margin:10px">
                       	<div class="">
-
+                            
                     		<form action="{{ route('admins.store') }}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                              <div class="col-sm-12">
                                              <fieldset style="width:100%; height:auto; float:left; margin:20px 5px; padding:10px; text-align:center; border:1px solid #00CC66">
                                                 <legend  style="width:25%; height:auto; text-transform:uppercase; color:#00CC66; border:none">General Information</legend>
-
+                                            
                                             <div class="col-md-6" style="padding:3px; margin:0">
                                                 <div class="form-group">
                                                     <label class="control-label" style="width:38%; float:left; text-align:right; margin:1% 1% 0 0;">
@@ -153,7 +153,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-
+                                             
                                             <div class="col-md-6" style="padding:3px; margin:0">
                                                 <div class="form-group">
                                                     <label class="control-label" style="width:38%; float:left; text-align:right; margin:1% 1% 0 0;">
@@ -214,7 +214,7 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                                    </div>
+                                                    </div>  
                                                     <div class="col-md-6" style="padding:3px; margin:0">
                                                         <div class="form-group">
                                                             <label class="control-label" style="width:38%; float:left; text-align:right; margin:1% 1% 0 0;">
@@ -226,16 +226,16 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                             </fieldset>
-
-                                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                               
+                                            <button type="submit" class="btn btn-success btn-sm">Submit</button>              
                                             </div>
                                 </form>
                     	</div>
                       </div>
                   </div>
-                </div>
+                </div>  
               </div>
 			</div>
         </div>

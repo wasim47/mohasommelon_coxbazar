@@ -1,82 +1,27 @@
-/*
-*******************************************
-*******************************************
-
-Template Name: gauto
-Template URL: https://themescare.com/demos/gauto-preview
-Description:
-Author: Themescare
-Author URL: https://themeforest.net/user/themescare
-Version: 1.0
-
-* This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
-
-This files contents are outlined below >>>>
-
-*** SEARCH EACH SECTION AS IT COMMENTS, YOU WILL GET THE RIGHT SECTION.
-
-*******************************************
-*******************************************
-
-==== CSS INDEX
-
-01 - IMPORTED CSS
-02 - DEFAULT CSS
-03 - RESPONSIVE CSS
-04 - PAGINATION CSS
-05 - BREADCROMB CSS
-06 - BTN TOP CSS
-07 - HEADER TOP CSS
-08 - MAIN HEADER CSS
-09 - MAINMENU CSS
-10 - MAIN SLIDER CSS
-11 - FIND AREA CSS
-12 - ABOUT AREA CSS
-13 - SERVICE AREA CSS
-14 - PROMO AREA CSS
-15 - HOT OFFERS AREA CSS
-16 - TESTIMONIAL AREA CSS
-17 - DRIVER AREA CSS
-18 - CALL AREA CSS
-19 - BLOG AREA CSS
-20 - FOOTER AREA CSS
-21 - ABOUT PAGE CSS
-22 - SERVICE DETAILS CSS
-23 - CAR LISTING CSS
-24 - CAR BOOKING CSS
-25 - GALLERY CSS
-26 - PRODUCT PAGE CSS
-27 - PRODUCT DETAILS PAGE CSS
-28 - CART PAGE CSS
-29 - CHECKOUT PAGE CSS
-30 - BLOG DETAILS PAGE CSS
-31 - NOTFOUND PAGE CSS
-32 - LOGIN PAGE CSS
-33 - CONTACT PAGE CSS
-
-
-*/
-
-
-/*================================================
-01 - IMPORTED CSS
-==================================================*/
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i&amp;display=swap');
-
-/*================================================
-02 - DEFAULT CSS
-==================================================*/
+@font-face {
+	font-family: 'SolaimanLipi';
+			src: url('font/SolaimanLipi.ttf') format('ttf'),
+			   url('font/SolaimanLipi.woff') format('woff');
+  }
+  *{
+	  padding:0;
+	  margin:0;
+	  font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
+	  font-weight:normal;
+  }
+  
+  body {
+	background: #fff;
+	color: #444;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
+  }
 
 body {
 	font-size: 14px;
 	line-height: 26px;
 	font-style: normal;
 	color: #7c8a97;
-	font-family: "Rubik", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 400;
 	text-rendering: optimizelegibility;
 	-moz-osx-font-smoothing: grayscale;
@@ -352,7 +297,7 @@ button.gauto-theme-btn:hover {
 	display: block;
 	font-weight: 500;
 	text-transform: capitalize;
-	font-family: "Rubik", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 }
 
 .site-heading h2 {
@@ -364,7 +309,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -595,7 +540,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: uppercase;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -687,7 +632,7 @@ button.gauto-theme-btn:hover {
 	content: "";
 	top: 0;
 	right: 37%;
-	width: 2030px;
+	width: 100%;
 	height: 120%;
 	-webkit-transform: skewX(45deg);
 	transform: skewX(45deg);
@@ -789,6 +734,7 @@ button.gauto-theme-btn:hover {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
+	margin-top:20px;
 }
 
 .single-header-promo {
@@ -820,7 +766,7 @@ button.gauto-theme-btn:hover {
 	line-height: 30px;
 	color: #001238;
 	font-weight: 600;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 }
 
 .header-action {
@@ -830,8 +776,8 @@ button.gauto-theme-btn:hover {
 .header-action a {
 	display: inline-block;
 	text-align: center;
-	padding: 10px 25px 10px 0px;
-	background: #ec3323 none repeat scroll 0 0;
+	padding: 5px 35px 5px 0px;
+	background: #e2853f none repeat scroll 0 0;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 500;
@@ -839,9 +785,13 @@ button.gauto-theme-btn:hover {
 	z-index: 1;
 }
 
+.site-logo{
+	padding: 10px;
+}
+
 .header-action a:before {
 	position: absolute;
-	background: #ec3323 none repeat scroll 0 0;
+	background: #e2853f none repeat scroll 0 0;
 	content: "";
 	top: 0;
 	left: -25px;
@@ -862,8 +812,10 @@ button.gauto-theme-btn:hover {
 ==================================================*/
 
 .gauto-mainmenu-area {
-	background: #020202 none repeat scroll 0 0;
-	border-bottom: 3px solid #363636
+	/* background: #020202 none repeat scroll 0 0; */
+	background: rgb(0,157,194);
+	background: linear-gradient(90deg, rgba(0,157,194,1) 24%, rgba(53,205,246,1) 54%, rgba(29,183,222,1) 87%);
+	border-bottom: 3px solid #1290ad
 }
 
 .mainmenu ul {
@@ -880,9 +832,9 @@ button.gauto-theme-btn:hover {
 .mainmenu ul li a {
 	color: #eee;
 	display: block;
-	padding: 20px 12px;
+	padding: 10px 12px;
 	text-transform: uppercase;
-	font-size: 14px;
+	font-size: 17px;
 	font-weight: 500
 }
 
@@ -1063,7 +1015,7 @@ button.gauto-theme-btn:hover {
 	line-height: 30px;
 	color: #001238;
 	font-weight: 600;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	text-transform: capitalize;
 }
 
@@ -1187,7 +1139,7 @@ button.gauto-theme-btn:hover {
 	letter-spacing: 3px;
 	line-height: 1.2;
 	margin-bottom: 20px;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 }
 
 .slider-text h2 span {
@@ -1272,7 +1224,7 @@ button.gauto-theme-btn:hover {
 	font-size: 33px;
 	font-weight: 600;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	line-height: 40px;
 }
 
@@ -1401,7 +1353,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -1448,7 +1400,7 @@ button.gauto-theme-btn:hover {
 }
 
 .signature-right h3 {
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	color: #001238;
 	font-size: 20px;
@@ -1516,13 +1468,20 @@ button.gauto-theme-btn:hover {
 	font-size: 21px;
 	color: #001238;
 	letter-spacing: 1px;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	-webkit-transition: all 0.4s ease 0s;
 	transition: all 0.4s ease 0s;
-	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
+	text-align: center;
+}
+
+.service-text h4 {
+	font-size: 18px;
+	color: #999;
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 .service-text a {
@@ -1631,7 +1590,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 50px;
 }
@@ -1716,45 +1675,55 @@ button.gauto-theme-btn:hover {
 	transform: skew(-40deg);
 }
 
+.newscard {
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 96%;
+    padding: 0;
+    border-radius: 10px;
+    min-height: 200px;
+    float: left;
+	margin: 2%;
+}
+
+
 .single-offers {
 	text-align: center;
-	padding: 20px;
-	border: 3px solid #f0f0ff;
-	margin-top: 30px;
+	padding: 5px;
+	border: 1px solid #f0f0ff;
 }
 
 .offer-image {
-	width: 235px;
+	width: auto;
 	margin: 0 auto;
 	display: block;
 }
 
 .offer-image img {
 	width: 100%;
+	height:auto;
+	max-height: 120px;
 }
 
 .offer-text {
-	margin-top: 20px
+	margin-top: 5px
 }
 
 .offer-text h3 {
-	font-size: 20px;
-	color: #001238;
+	font-size: 15px;
+	color: #7f0618;
 	letter-spacing: 1px;
 	margin-bottom: 10px;
-	-webkit-transition: all 0.4s ease 0s;
-	transition: all 0.4s ease 0s;
-	display: inline-block;
-	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
-	font-weight: 600;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
+	font-weight: 800;
 }
 
 .offer-text h4 {
 	color: #020202;
-	font-size: 16px;
+	font-size: 14px;
 	text-transform: capitalize;
-	margin-top: 8px;
+	margin-top: 0;
+	padding: 0;
 }
 
 .offer-text h4 span {
@@ -1890,7 +1859,7 @@ button.gauto-theme-btn:hover {
 }
 
 .client-info h3 {
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	color: #001238;
 	font-size: 20px;
@@ -1906,15 +1875,6 @@ button.gauto-theme-btn:hover {
 	color: #ec3323;
 }
 
-.newscard {
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-    transition: 0.3s;
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    min-height: 400px;
-    float: left;
-}
 
 /* Clients Section
 --------------------------------*/
@@ -1929,7 +1889,6 @@ button.gauto-theme-btn:hover {
   margin-bottom: 30px;
 }
 #clients .client-logo {
-  padding: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1937,7 +1896,9 @@ button.gauto-theme-btn:hover {
   border-bottom: 1px solid #d6eaff;
   overflow: hidden;
   background: #fff;
-  height: 160px;
+  width:100%;
+  padding:10px;
+  height: 180px;
 }
 #clients .client-logo:hover img {
   transform: scale(1.2);
@@ -2139,7 +2100,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -2209,7 +2170,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 500;
 	line-height: 50px;
 }
@@ -2287,7 +2248,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -2451,7 +2412,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: uppercase;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	position: relative;
 }
@@ -2623,7 +2584,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -2692,7 +2653,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -2863,7 +2824,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -3161,7 +3122,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -3237,7 +3198,7 @@ button.gauto-theme-btn:hover {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 28px;
 	padding-bottom: 10px;
@@ -3455,7 +3416,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -3625,7 +3586,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: uppercase;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -3656,7 +3617,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -3733,7 +3694,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -3836,7 +3797,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 }
@@ -3968,7 +3929,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 45px;
 	padding-bottom: 10px;
@@ -4079,7 +4040,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -4120,7 +4081,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -4193,7 +4154,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 130px;
 }
@@ -4207,7 +4168,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	line-height: 40px;
 }
@@ -4250,7 +4211,7 @@ input[type="radio"]:checked~label {
 }
 
 .login-page-heading>h3 {
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 	color: #001238;
 	font-size: 25px;
@@ -4495,7 +4456,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: inline-block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 
@@ -4553,7 +4514,7 @@ input[type="radio"]:checked~label {
 	transition: all 0.4s ease 0s;
 	display: block;
 	text-transform: capitalize;
-	font-family: "Poppins", sans-serif;
+	font-family: BNG,SutonnyBanglaOMJ,SolaimanLipi;
 	font-weight: 600;
 }
 

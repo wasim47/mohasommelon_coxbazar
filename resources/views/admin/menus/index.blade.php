@@ -1,5 +1,5 @@
- @extends('admin.include.master')
-	@section('title') Menu - Zaman Car Rental @endsection
+ @extends('admin.include.master') 
+	@section('title') Menu - Sommilito Nagorik Forum @endsection 
 @section('content')
 
 	<div class="layout-content">
@@ -15,7 +15,7 @@
                             </ol>
                         </div>
                         <div class="col-sm-7 breadcrumb pull-right" style="float:right; text-align:right">
-
+                          
                           <a  href="javascript:void()" onclick="deletedata('masterdelete','menus');" style="color:#fff; margin-right:20px;" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Multiple Delete</a>
                           <a  href="{{ route('menus.create') }}" style="color:#fff; margin-right:20px" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create New Menu</a>
                       </div>
@@ -29,7 +29,7 @@
              <div class="row-fluid">
                 <div class="col-sm-12">
                   <div class="card">
-
+                      
                       <div class="card-block">
                             <form id="form_check">
                             <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -37,39 +37,42 @@
                                     <tr>
                                       <th width="2%"><input name="checkbox" onclick='checkedAll();' type="checkbox" readonly="readonly" /></th>
                                       <th width="27%">Menu Name</th>
-                                      <th width="27%">Structure</th>
+                                      <th width="27%">Parent Menu</th>
+                                      <th width="27%">Page Structure</th>
                               		  <th width="17%" align="right">Action</th>
                             	</tr>
                 				 </thead>
                                <tbody>
                                <?php $i=0; ?>
                             @foreach($allmenus as $menu)
-							   <?php $i++;
-
+							   <?php $i++; 							   		
+									
                                 ?>
-
+                            
                             <tr id="tablerow<?php echo $menu->id;?>" class="tablerow">
                               <td><input type="checkbox"  name="summe_code[]" id="summe_code<?php echo $i; ?>" value="{{ $menu->id }}" /></td>
                               <td>{{ $menu->title }}</td>
+                              <td>{{ implode(' ',explode('-',$menu->parent_id)) }}</td>
                               <td>{{ ucfirst($menu->page_structure) }}</td>
+                             
                               <td align="right">
                               <div style="width:50%; float:left">
                              	 <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning" style="font-size: 12px; float:left; padding:3px 5px"><i class="fa fa-edit"></i> Edit</a>
                               </div>
                               <div style="width:50%; float:left">
-                              	  <button type="button" class="btn btn-danger" style="font-size: 12px; float:left; padding:3px 5px"
+                              	  <button type="button" class="btn btn-danger" style="font-size: 12px; float:left; padding:3px 5px" 
                                     onclick="deleteSingle('<?php echo $menu->id;?>','masterdelete','menus')"><i class="fa fa-trash"></i> Delete</button>
                               </div>
                               </td>
                             </tr>
                             @endforeach
-
+            
                       		</tbody>
-                      </table>
+                      </table> 
                       </form>
                       </div>
                   </div>
-                </div>
+                </div>  
               </div>
     </div>
 </div>

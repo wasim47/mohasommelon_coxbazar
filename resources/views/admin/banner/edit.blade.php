@@ -1,9 +1,9 @@
-@extends('admin.include.master')
-	@section('title') Edit - {{ $banner->name }} - Zaman Car Rental @endsection
+@extends('admin.include.master') 
+	@section('title') Edit - {{ $banner->name }} - Sommilito Nagorik Forum @endsection 
 @section('content')
 
   <link href="{{ asset('/app-assets/plugins/datatables/datatables.css') }}" rel="stylesheet" type="text/css">
-
+    
     <div class="layout-content">
         <div class="layout-content-body">
         	<div class="col-sm-12">
@@ -18,7 +18,7 @@
                             </li>
                     </ol>
                 </div>
-
+            
               @if (session()->has('messageType'))
                   <div class="alert alert-{{ session()->get('messageType') }}" role="alert">
                       <strong>STATUS: </strong> {{ session()->get('message') }}
@@ -29,10 +29,10 @@
         <div class="col-sm-12">
           <div class="card">
             	<div class="row" style="margin:10px">
-                      	<div class="col-sm-offset-2">
+                      	<div class="col-sm-offset-2">                           
 						{!! Form::model($banner, ['route'=>['banner.update', $banner->id], 'files' => true, 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
-
-
+                        
+                        
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Banner Name') }}</label>
                             <div class="col-md-6">
@@ -56,13 +56,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('URL') }}</label>
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('URL (Optional)') }}</label>
                             <div class="col-md-6">
-                                <input id="url" type="text" class="form-control" name="url" value="{{ $banner->url }}" required>
+                                <input id="url" type="text" class="form-control" name="url" value="{{ $banner->url }}">
+                            </div>
+                        </div>                        
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Meta Details') }}</label>
+                            <div class="col-md-6">
+                                <input id="meta_details" type="text" class="form-control" name="meta_details" value="{{ $banner->meta_details }}">
+                                @if ($errors->has('meta_details'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('meta_details') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-
-
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Keywords') }}</label>
+                            <div class="col-md-6">
+                                <input id="keywords" type="text" class="form-control" name="keywords" value="{{ $banner->keywords }}">
+                                @if ($errors->has('keywords'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('keywords') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('Sequence') }}</label>
                             <div class="col-md-6">
@@ -84,7 +105,7 @@
                                <input id="stillthumb" type="hidden" class="form-control" name="stillthumb" value="{{ $banner->image }}">
                             </div>
                         </div>
-
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -95,9 +116,9 @@
                     </form>
                     	</div>
                       </div>
-
+              	
           </div>
-        </div>
+        </div>  
       </div>
 	</div>
   </div>

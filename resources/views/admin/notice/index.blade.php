@@ -1,5 +1,5 @@
 @extends('admin.include.master')
-	@section('title') Notice List - HNILAUP @endsection
+	@section('title') Notice List - Sommilito Nagorik Forum @endsection
 @section('content')
 	<div class="layout-content">
         <div class="layout-content-body">
@@ -36,10 +36,13 @@
                                 <thead>
                                     <tr>
                                       <th width="4%"><input name="checkbox" onclick='checkedAll();' type="checkbox" readonly="readonly" /></th>
+                                      <th width="13%">Notice Type</th>
                                       <th width="13%">Name</th>
                                       <th width="24%">Details</th>
-                                      <th width="22%">Image</th>                                      
-                                      <th width="10%">Sequence</th>
+                                      <th width="22%">Image</th>                                    
+                                      <th width="10%">PDF File</th>                                   
+                                      <th width="10%">Publish Date</th>                                  
+                                      <th width="10%">Sequence</th> 
                                       <th width="10%">Status</th>
                                       <th width="12%" align="right">Action</th>
                                   </tr>
@@ -58,9 +61,13 @@
 
                             <tr id="tablerow<?php echo $notice->id;?>" class="tablerow">
                               <td><input type="checkbox"  name="summe_code[]" id="summe_code<?php echo $i; ?>" value="{{ $notice->id }}" /></td>
+                              <td>{{ $notice->getNoticeType->name }}</td>
                               <td>{{ $notice->name }}</td>
-							  <td>{!! Str::limit($notice->details,100) !!}</td>	
+							  <td>{!! str_limit($notice->details,100) !!}</td>	
                               <td><img src="{{ asset('uploads/notice/'.$notice->image) }}" style="width:200px; height:auto" /></td>
+                              <td>@if($notice->files!="") <a href="{{ asset('uploads/notice/file/'.$notice->files) }}" target="_blank" style="text-align:center; color:#fff">
+                                      <img src="{{ asset('assets/images/pdf.png') }}" /></a> @endif</td>
+                              <td>{{ $notice->publish_date }}</td>
                               <td>{{ $notice->sequence }}</td>
                               <th width="10%" align="center"><?php echo $statusdis; ?></th>
                               <td align="right">

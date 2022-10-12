@@ -21,7 +21,7 @@ class MenusController extends Controller
         return view('admin.menus.create',compact('menus'));
     }
 
-
+  
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -31,15 +31,14 @@ class MenusController extends Controller
 		$expval=explode(' ',$request->title);
 		$impval=implode('-',$expval);
 		$slug = str_replace([',', "'",'"', '/','|','.','`','%','#','"','?'],'' , strtolower($impval));
-
+		
         $m = new Menu;
-
+        
         $m->uri = $slug;
 		$m->title = $request->title;
 		$m->parent_id = $request->parent_id;
 		$m->sparent_id = $request->sparent_id;
 		$m->page_structure = $request->page_structure;
-		//$m->title_bangla = $request->title_bangla;
         $m->created_at = date('Y-m-d H:i:s');
         $m->updated_at = date('Y-m-d H:i:s');
         $m->save();
@@ -47,13 +46,13 @@ class MenusController extends Controller
         return redirect('administration/menus');
     }
 
-
+   
     public function show($id)
     {
         //
     }
 
-
+   
     public function edit($id)
     {
         $menu = Menu::find($id);
@@ -61,19 +60,27 @@ class MenusController extends Controller
         return view('admin.menus.edit',compact('menu','menus'));
     }
 
-
+   /*public function setHome($id)
+    {	
+		Menu::query()->update(['sethome'=>0]);	
+		Menu::where('id',$id)->update(['sethome'=>1]);	
+        return redirect('administration/menus');
+    }*/
+	
+	
+	
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title'=>'Required'
         ]);
 
-
+		
         $menu = Menu::find($id);
         $expval=explode(' ',$request->title);
 		$impval=implode('-',$expval);
 		$slug = str_replace([',', "'",'"', '/','|','.','`','%','#','"','?'],'' , strtolower($impval));
-
+		
         $menuUpdate = array(
 			'parent_id'=>$request->parent_id,
 			'page_structure'=>$request->page_structure,
@@ -81,7 +88,7 @@ class MenusController extends Controller
 			//'title_bangla'=>$request->title_bangla,
             'uri'=>$slug
         );
-
+		
 		//dd($menuUpdate);
         $menu->update($menuUpdate);
          return redirect('administration/menus');
@@ -99,14 +106,14 @@ class MenusController extends Controller
         $menuItem->delete();
         return redirect('administration/menus');
     }
-
+	
 	public function searchmenu(Request $req)
     {
 		if($req->colid!="")
 		{
 			$id=$req->colid;
-
-			$searchresults = Menu::where('parent_id', $id)->where('sparent_id', NULL)->orderBy('title','asc')->get();
+			
+			$searchresults = Menu::where('parent_id', $id)->where('sparent_id', NULL)->orderBy('title','asc')->get();		
 				$displayvar = '<select name="sparent_id" class="form-control">';
 				$displayvar .= '<option value="">Select Sub Parent</option>';
     							   foreach($searchresults as $rows):

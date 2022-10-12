@@ -1,5 +1,5 @@
-@extends('admin.include.master')
-@section('title') Welcome to Zaman Car Rental.com @endsection
+@extends('admin.include.master') 
+@section('title') Welcome to Sommilito Nagorik Forum.com @endsection 
 @section('content')
 
  <div class="layout-content">
@@ -14,8 +14,8 @@
                 <option value="last_3m">Last 90 days</option>
               </select>
             </div>-->
-            <h1 class="title-bar-title"><span class="d-ib">Dashboard - Zaman Car Rental</span></h1>
-
+            <h1 class="title-bar-title"><span class="d-ib">Dashboard - Sommilito Nagorik Forum</span></h1>
+            
           </div>
           <?php /*?><div class="row gutter-xs">
           	 <h3 style="margin-left:10px; font-size:18px">Summery :: Our Applications</h3>
@@ -59,20 +59,20 @@
                   </div>
               </div>
             </div>
-
+            
           </div><?php */?>
-
-
-
-
-
+          
+          
+          
+        
+        
         </div>
       </div>
-
-
+    
+    
 @endsection
 
 @section('footerScript')
-
-
+	
+    
 @endsection

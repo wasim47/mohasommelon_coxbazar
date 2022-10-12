@@ -25,26 +25,24 @@
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.theme.default.min.css') }}">
       <!--Animate css-->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/animate.min.css') }}">
-      <!--Datepicker css-->
-      <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery.datepicker.css') }}">
       <!--Nice Select css-->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/nice-select.css') }}">
       <!-- Lightgallery css -->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/lightgallery.min.css') }}">
-      <!--ClockPicker css-->
-      <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-clockpicker.min.css') }}">
       <!--Slicknav css-->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/slicknav.min.css') }}">
       <!--Site Main Style css-->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
       <!--Responsive css-->
       <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
+      
+      <link rel="stylesheet" href="{{ asset('assets/frontend/colorbox/colorbox.css') }}" />
 
 </head>
 
 <body>
 
-	  <section class="gauto-header-top-area">
+	 {{--  <section class="gauto-header-top-area">
          <div class="container">
             <div class="row">
                <div class="col-md-6">
@@ -54,18 +52,18 @@
                </div>
             </div>
          </div>
-      </section>
+      </section> --}}
       <header class="gauto-main-header-area">
          <div class="container">
             <div class="row">
-               <div class="col-md-3">
+               <div class="col-lg-2 col-sm-12">
                   <div class="site-logo">
                      <a href="{{ route('home') }}">
                      <img src="{{ asset('uploads/companyprofile/'.$companyprofile->image) }}" alt="gauto" />
                      </a>
                   </div>
                </div>
-               <div class="col-lg-6 col-sm-9">
+               <div class="col-lg-6 col-sm-12">
                   <div class="header-promo">
                      
                      <div class="single-header-promo">
@@ -73,15 +71,15 @@
                            <img src="{{ asset('assets/frontend/img/clock.png') }}" alt="clock" />
                         </div>
                         <div class="header-promo-info">
-                           <h3>{{ date('l, d F Y')}}</h3>
+                           <h3>{{ Helper::translateBangla(date('l, d F Y'))}}</h3>
                            <h3><span id="currentTime"></span></h3>
                         </div>
                      </div>
                   </div>
                </div>
-               <div class="col-lg-3">
+               <div class="col-lg-4">
                   <div class="header-action">
-                     <a href="#"><i class="fa fa-phone"></i> {{ $companyprofile->contact}}</a>
+                     <a href="#">For support: <i class="fa fa-phone"></i> {{ $companyprofile->contact}}</a>
                   </div>
                </div>
             </div>
@@ -92,7 +90,7 @@
          <section class="gauto-mainmenu-area">
          <div class="container">
             <div class="row">
-               <div class="col-lg-9">
+               <div class="col-lg-12">
                   <div class="mainmenu">
                      <nav>                        
                         <ul id="gauto_navigation">
@@ -250,11 +248,13 @@
 					h = (d.getHours()<10?'0':'') + d.getHours(),
 					m = (d.getMinutes()<10?'0':'') + d.getMinutes();
 					s = (d.getSeconds()<10?'0':'') + d.getSeconds();
-				  document.getElementById('currentTime').innerHTML = h + ':' + m + ':' + s;
+				   document.getElementById('currentTime').innerHTML = h + ':' + m + ':' + s;
+               // document.getElementById('currentTime').innerHTML = {{  Helper::translateBangla("<script>h + ':' + m + ':' + s</script>") }};
 				}, 1000
 			);
         </script>
-         <!--Jquery js-->
+      
+
       <script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
       <!-- Popper JS -->
       <script src="{{ asset('assets/frontend/js/popper.min.js') }}"></script>
@@ -277,6 +277,29 @@
       <script src="{{ asset('assets/frontend/js/jquery-clockpicker.min.js') }}"></script>
       <!--Main js-->
       <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+      <script src="{{ asset('assets/frontend/colorbox/jquery.colorbox.js') }}"></script>
+      <script>
+         (function($) {
+             $(".youtube").colorbox({iframe:true, width:"80%", height:"80%"});
+             $(".photogallery").colorbox({
+                 rel: 'gal', 
+                 scalePhotos:true,
+                 fadeOut:300,
+                 slideshow:true, 
+                 slideshowAuto:true,
+                 slideshowSpeed:2500,
+                 slideshowStart:'Start Auto slide',
+                 slideshowStop:'Stop Auto slide',
+                 width:"80%", 
+                 height:"80%", 
+             title: function(){
+               var url = $(this).attr('href');
+               return '<a href="' + url + '" target="_blank">Click here full view</a>';
+             }});
+             
+         
+         })(jQuery);
+      </script>
     </body>
 
     </html>
